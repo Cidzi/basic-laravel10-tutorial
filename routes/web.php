@@ -3,10 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 
 //User Group
 Route::get('/',[BlogController::class,'index']);
 Route::get('/detail/{id}',[BlogController::class,'detail']);
+
+//Customer
+Route::get('/customers',[CustomerController::class,'customers'])->name('customers');
+Route::get('/customer/{id}',[CustomerController::class,'customer'])->name('customer');
 
 //Author Group
 route::prefix('author')->group(function(){
@@ -21,6 +28,13 @@ Route::post('/update/{id}',[AdminController::class,'update'])->name('update');
 //    return "ไม่พบหน้านี้";
 //});
 });
+
+//Sale
+Route::get('/sale',[SaleController::class,'sale']);
+//Route::get('/customer/{id}',[CustomerController::class,'customer'])->name('customer');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
