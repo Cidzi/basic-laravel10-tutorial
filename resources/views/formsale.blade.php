@@ -2,33 +2,30 @@
 @section('title','FormSale')
 @section('content')
 <h2 class="text text-center py-2">FormSale</h2>
-    <form action="/author/insert" method="POST">
+    <form action="/insertorder" method="POST">
         @csrf
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" class="form-control">
+            <label for="customer">Customer</label>    
+            <select name="customer">
+                @foreach ($customer as $item)           
+                <option value="{{$item->id}}">{{$item->c_name}}</option>   
+                @endforeach                  
+            </select>
         </div>
-        @error('title')
-            <div class="my-2">
-                <span class="text text-danger">{{$message}}</span>
-            </div>
-        @enderror
+        <br>
         <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>
+            <div class="checkbox">
+            <label for="checkbox1" class="form-check-label ">Product</label><br>
+            @foreach ($product as $Pitem)                
+                <input type="checkbox" id="radio{{$Pitem->id}}" name="product[]" value="{{$Pitem->id}}"><label for="radio{{$Pitem->id}}">{{$Pitem->p_name}}</label>
+            @endforeach 
+            </div>
         </div>
-        @error('content')
+        @error('product')
         <div class="my-2">
             <span class="text text-danger">{{$message}}</span>
         </div>
     @enderror
         <input type="submit" value="save" class="btn btn-primary my-2">
     </form>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#content' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
 @endsection

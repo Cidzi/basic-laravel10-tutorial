@@ -31,6 +31,7 @@ Route::post('/update/{id}',[AdminController::class,'update'])->name('update');
 
 //Sale
 Route::get('/sale',[SaleController::class,'sale']);
+Route::post('/insertorder',[SaleController::class,'insertorder']);
 //Route::get('/customer/{id}',[CustomerController::class,'customer'])->name('customer');
 
 
